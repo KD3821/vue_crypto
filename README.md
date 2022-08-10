@@ -1,4 +1,4 @@
-# ninja_cryptonomicon
+# js_ninja_cryptonomicon
 
 ## Project setup
 ```
