@@ -221,6 +221,9 @@ export default {
   },
   methods: {
     formatPrice(price) {
+      if (price === "-") {
+        return price;
+      }
       return price > 1 ? price.toFixed(2) : price.toPrecision(2);
     },
     async updateTickers() {
@@ -230,12 +233,7 @@ export default {
       const exchangeData = await loadTickers(this.tickers.map((t) => t.name));
       this.tickers.forEach((ticker) => {
         const price = exchangeData[ticker.name.toUpperCase()];
-        if (!price) {
-          ticker.price = "-";
-          return;
-        }
-        const normalizedPrice = 1 / price;
-        ticker.price = normalizedPrice;
+        ticker.price = price ?? "-";
       });
     },
     add() {
